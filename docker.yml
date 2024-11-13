@@ -1,0 +1,15 @@
+---
+- name: Build the Docker file
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: build image from the docker file
+      community.docker.docker_image:
+        source: build
+        build:
+          path: /home/cristine/Activity11
+          dockerfile: dockerfile.web
+        name: db_web_server
+        tag: latest
+        state: present
+        push: no

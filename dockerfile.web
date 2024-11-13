@@ -1,0 +1,13 @@
+# Dockerfile
+FROM ubuntu:latest
+
+# Update package list and install Apache and MySQL
+RUN apt-get update && \
+    apt-get install -y apache2 mysql-server && \
+    apt-get clean
+
+# Start Apache and MySQL on container start
+CMD service apache2 start && service mysql start && tail -f /dev/null
+
+# Expose necessary ports (80 for Apache, 3306 for MySQL)
+EXPOSE 80 3306
